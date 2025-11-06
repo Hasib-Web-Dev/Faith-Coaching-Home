@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faith Coaching Home</title>
+  <meta name="description" content="A clean, responsive static clone of the UDVASH homepage layout. Pure HTML/CSS/JS with no build step." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #0f1630;
+      --brand: #4f46e5; /* Indigo */
+      --brand-2: #22d3ee; /* Cyan */
+      --text: #e5e7eb;
+      --muted: #9aa0b4;
+      --card: #11162c;
+      --border: #1b2141;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --error: #ef4444;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-lg: 18px;
+      --radius-sm: 10px;
+      --maxw: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 80% -100px, rgba(79,70,229,.25), transparent 60%),
+                  radial-gradient(1200px 700px at -20% -150px, rgba(34,211,238,.18), transparent 55%),
+                  linear-gradient(180deg, var(--bg) 0%, #070b18 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: 20px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .6rem; font-weight: 600; border: 1px solid transparent; cursor: pointer;
+      padding: .85rem 1.1rem; border-radius: 999px; transition: .25s ease;
+    }
+    .btn--primary { background: linear-gradient(90deg, var(--brand), #6d28d9); color: white; }
+    .btn--primary:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .btn--ghost { background: transparent; border-color: #2a2f51; color: var(--text); }
+    .btn--ghost:hover { background: #131a37; }
+    .chip { display:inline-flex; align-items:center; gap:.4rem; padding:.3rem .6rem; border-radius:999px; font-size:.8rem; color:#dbeafe; background:rgba(59,130,246,.15); border:1px solid rgba(59,130,246,.25); }
+
+    /* Header */
+    .header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(140%) blur(8px); background: rgba(10,16,36,.6); border-bottom: 1px solid rgba(255,255,255,.06); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display:flex; align-items:center; gap:.8rem; font-weight:800; letter-spacing:.3px; }
+    /* Circular logo */
+    .brand-logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow: 0 6px 18px rgba(79,70,229,.4); }
+    .nav-links { display:flex; gap: 1.2rem; align-items:center; }
+    .nav-links a { color: var(--muted); font-weight: 600; }
+    .nav-links a.active, .nav-links a:hover { color: #c7d2fe; }
+    .nav-cta { display:flex; align-items:center; gap:.6rem; }
+    .hamb { display:none; width:38px; height:38px; border-radius:10px; border:1px solid #24294a; align-items:center; justify-content:center; }
+
+    /* Mobile menu */
+    .mobile-menu { display:none; border-top:1px solid #1c2244; background: rgba(12,18,40,.9); }
+    .mobile-menu a { display:block; padding: 14px 20px; color:#cbd5e1; border-bottom:1px solid #11162c; }
+
+    /* Hero */
+    .hero { position: relative; padding: 64px 0 34px; overflow: hidden; }
+    .hero-grid { display:grid; grid-template-columns: 1.2fr .8fr; gap: 32px; align-items:center; }
+    .eyebrow { margin-bottom: 10px; }
+    .hero h1 { font-size: clamp(28px, 4.6vw, 56px); line-height: 1.05; margin: 0 0 10px; letter-spacing: -.5px; }
+    .hero p { color: #cbd5e1; font-size: clamp(15px, 2vw, 18px); max-width: 56ch; }
+    .hero-actions { margin-top: 18px; display:flex; gap:.8rem; flex-wrap:wrap; }
+
+    .hero-card { background: linear-gradient(180deg, rgba(30,41,88,.6), rgba(17,22,44,.7)); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 18px; }
+    .hero-card h3 { margin: 0 0 10px; font-size: 1.05rem; }
+    .metric { display:grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items:center; padding: 10px; border-radius: 12px; background: #0f1630; border: 1px solid #202851; }
+    .metric strong { font-size: 1.1rem; }
+    .metric small { color:#9aa0b4; }
+
+    /* Carousel */
+    .carousel { margin-top: 18px; position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid #1c2244; }
+    .slides { display:flex; transform: translateX(0); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .slide { min-width: 100%; height: 280px; background-size: cover; background-position: center; }
+    .dots { position:absolute; bottom: 10px; left: 0; right: 0; display:flex; justify-content:center; gap:8px; }
+    .dot { width: 9px; height: 9px; border-radius: 999px; background: rgba(255,255,255,.35); border: 1px solid rgba(255,255,255,.55); cursor: pointer; }
+    .dot.active { background: white; }
+
+    /* Sections */
+    .section { padding: 40px 0; }
+    .section h2 { font-size: clamp(22px, 3.2vw, 36px); margin: 0 0 10px; }
+    .section p.lead { color:#cbd5e1; max-width: 70ch; }
+
+    .cards { margin-top: 18px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: linear-gradient(180deg, rgba(20,26,56,.7), rgba(14,18,38,.9)); border:1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); display:flex; flex-direction:column; }
+    .card-media { aspect-ratio: 16/9; background:#101631; background-size: cover; background-position:center; }
+    .card-body { padding: 16px; display:flex; flex-direction:column; gap: 10px; }
+    .tag { align-self:flex-start; padding:.25rem .6rem; border-radius:999px; background:#0b1735; border:1px solid #223062; color:#c7d2fe; font-size:.78rem; font-weight:600; }
+    .card h3 { margin: 4px 0; font-size: 1.05rem; }
+    .card p { color:#aab0c6; font-size: .95rem; }
+
+    /* Stats band */
+    .stats { margin-top: 24px; display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .stat { background: #0f1630; border:1px solid #222b56; border-radius: 14px; padding: 16px; text-align:center; }
+    .stat strong { font-size: 1.6rem; display:block; }
+    .stat span { color:#9aa0b4; font-size:.9rem; }
+
+    /* Testimonials */
+    .testi { display:grid; grid-template-columns: .9fr 1.1fr; gap: 18px; margin-top: 20px; }
+    .quote { background: #0f1630; border:1px solid #232b57; border-radius: 14px; padding: 18px; }
+    .quote p { margin: 8px 0 12px; color:#cbd5e1; }
+    .quote .who { display:flex; align-items:center; gap: 10px; }
+    .avatar { width: 42px; height: 42px; border-radius: 999px; background:#1f2a4c; }
+
+    /* FAQ */
+    .faq { margin-top: 20px; }
+    .faq-item { background:#0f1630; border:1px solid #232b57; border-radius: 14px; margin-bottom: 10px; overflow:hidden; }
+    .faq-q { width:100%; text-align:left; background:transparent; color:#e5e7eb; padding:14px 16px; border:0; display:flex; align-items:center; justify-content:space-between; font-weight:600; cursor:pointer; }
+    .faq-a { padding: 0 16px 14px; color:#cbd5e1; display:none; }
+
+    /* Grade Cards (Class 6–12) */
+    .grade-grid{ margin-top:22px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grade-card{ border:1px solid var(--border); border-radius: var(--radius-lg); overflow:hidden; background: linear-gradient(180deg, rgba(18,24,52,.85), rgba(12,16,36,.95)); box-shadow: var(--shadow); }
+    .grade-head{ padding:18px; background: radial-gradient(600px 220px at 90% -40px, rgba(79,70,229,.35), transparent 60%), radial-gradient(600px 220px at 10% -40px, rgba(34,211,238,.25), transparent 60%), linear-gradient(180deg, #0d1430, #0b122a); border-bottom:1px solid #232b57; }
+    .grade-title{ margin:0; font-size:1.15rem; color:#ffdc6e; letter-spacing:.2px; }
+    .grade-sub{ margin:.25rem 0 0; color:#c7d2fe; font-weight:600; }
+    .grade-body{ padding:16px 18px 18px; }
+    .grade-body ul{ margin:0; padding-left:18px; color:#aab0c6; line-height:1.6; }
+    .grade-body li{ margin:.25rem 0; }
+    .actions{ margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+
+    /* Footer */
+    .footer { margin-top: 28px; padding: 34px 0 50px; border-top:1px solid #1b2141; color:#aeb4c9; }
+    .foot-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
+      gap:20px;
+      justify-content:center;
+      justify-items:center;
+      text-align:center;
+    }
+    .foot-col h4 { color:#dbeafe; margin:0 0 10px; }
+    .foot-col a { color:#aeb4c9; display:block; padding:6px 0; }
+    .foot-col a:hover { color:#ffffff; }
+    .copyright { margin-top: 14px; color:#7a82a5; font-size:.9rem; text-align:center; }
+
+    /* ✅ Programs intro center */
+    #programs { padding: 0; }
+    #programs .intro{
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    /* ✅ Floating Social Buttons */
+    .float-social{
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0));
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 60;
+    }
+    .fs{
+      width: 56px; height: 56px;
+      border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 24px rgba(0,0,0,.28);
+      border: 1px solid rgba(255,255,255,.25);
+      background: #ffffff;
+      transition: transform .2s ease, filter .2s ease;
+    }
+    .fs:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+    .fs--fb{ background: #1877F2; }
+    .fs--yt{ background: #FF0000; }
+    .fs--wa{ background: #25D366; }
+    .fs svg{ width: 26px; height: 26px; fill: #ffffff; }
+    @media (max-width: 480px){
+      .fs{ width: 52px; height: 52px; }
+      .fs svg{ width: 24px; height: 24px; }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .grade-grid{ grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 720px) {
+      .nav-links { display:none; }
+      .hamb { display:flex; }
+      .cards, .grade-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#">
+        <img class="brand-logo" src="Faith Coaching Home.png" alt="Faith Coaching Home logo">
+        <span>Faith Coaching Home</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#programs" class="active">Programs</a>
+        <a href="#features">Features</a>
+        <a href="#success">Success</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="btn btn--ghost" onclick="scrollToId('programs')">Explore</button>
+        <button class="btn btn--primary" onclick="scrollToId('apply')">Apply Now</button>
+        <button class="hamb" id="hamb" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke="#c7d2fe" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#programs">Programs</a>
+      <a href="#features">Features</a>
+      <a href="#success">Success</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="chip eyebrow">SSC | HSC | Admission</span>
+        <h1>স্মার্ট লার্নিং, বেটার রেজাল্ট — FCH স্টাইলে।</h1>
+        <p>শিক্ষার মূল উদ্দেশ্য হলো একজন শিক্ষার্থীর সুপ্ত মেধা ও প্রতিভাকে বিকশিত করা, তার চিন্তাশক্তিকে ত্বরান্বিত করা এবং তাকে ধৈর্যশীল, আত্মবিশ্বাসী, নীতিবান ও দায়িত্ববান মানুষ হিসেবে গড়ে তোলা।এই নীতিকে সামনে নিয়ে শুরু থেকেই FCH পরিবারের পথচলা। সততা, নিষ্ঠা, সেবা ও পরিবর্তনের মানসিকতা নিয়ে ইউসিসি এগিয়ে চলছে ধাপে ধাপে — হাটি হাটি পায়ে একটি আলোকিত ভবিষ্যতের পথে।</p>
+        <div class="hero-actions">
+          <button class="btn btn--primary" onclick="scrollToId('programs')">Browse Programs</button>
+          <button class="btn btn--ghost" onclick="scrollToId('features')">See Features</button>
+        </div>
+
+        <div class="hero-card" style="margin-top:16px">
+          <h3>📈 Live Metrics </h3>
+          <div class="metric"><span class="chip">New</span><div><strong>95%+</strong><br><small>Student satisfaction</small></div><div>⭐️⭐️⭐️⭐️⭐️</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="carousel" id="carousel" aria-roledescription="carousel">
+          <div class="slides" id="slides">
+            <div class="slide" style="background-image:url('student3.jpg')"></div>
+            <div class="slide" style="background-image:url('student4.jpg')"></div>
+            <div class="slide" style="background-image:url('student2.jpg')"></div>
+          </div>
+          <div class="dots" id="dots" aria-label="Select slide"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="section" id="programs">
+    <div class="container">
+      <!-- ✅ centered block -->
+      <div class="intro">
+        <h2>Programs</h2>
+        <p class="lead">SSC, HSC ও Admission — সব কোর্সের জন্য ভরসার নাম <b>ফেইথ কোচিং হোম।</b></p>
+
+        <h3 style="margin-top:26px">একাডেমিক (৬ষ্ঠ–১২শ)</h3>
+        <p class="lead">প্রতিটি শ্রেণির জন্য একই মানের কনটেন্ট ও সাপোর্ট – লাইভ + রেকর্ডেড, নোট, এক্সাম, রিপোর্টিং ও ডাউট সলভিং।</p>
+      </div>
+
+      <!-- Class 6–12 grade cards -->
+      <div class="grade-grid">
+        <!-- ৬ষ্ঠ -->
+        <article class="grade-card">
+          <div class="grade-head">
+            <h3 class="grade-title">৬ষ্ঠ শ্রেণি</h3>
+            <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+          </div>
+          <div class="grade-body">
+            <ul>
+              <li>প্রতিটি বিষয়ের প্যারালাল টেস্ট</li>
+              <li>লেকচার ক্লাস ও রেকর্ডেড ভিডিও</li>
+              <li>লাইভ এক্সাম ও গ্রেডিং সিস্টেম</li>
+              <li>PDF ক্লাস নোট ও সমাধান</li>
+              <li>এলাকাভিত্তিক রিপোর্ট ও SMS/ই-মেইল</li>
+              <li>ডাউট সলভিং Q&A সেশন</li>
+            </ul>
+            <div class="actions">
+              <button class="btn btn--ghost" onclick="alert('৬ষ্ঠ শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+              <button class="btn btn--primary" onclick="scrollToId('apply')">Enroll Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ৭ম -->
+        <article class="grade-card">
+          <div class="grade-head">
+            <h3 class="grade-title">৭ম শ্রেণি</h3>
+            <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+          </div>
+          <div class="grade-body">
+            <ul>
+              <li>প্রতিটি বিষয়ের প্যারালাল টেস্ট</li>
+              <li>লেকচার ক্লাস ও রেকর্ডেড ভিডিও</li>
+              <li>লাইভ এক্সাম ও গ্রেডিং সিস্টেম</li>
+              <li>PDF ক্লাস নোট ও সমাধান</li>
+              <li>এলাকাভিত্তিক রিপোর্ট ও SMS/ই-মেইল</li>
+              <li>ডাউট সলভিং Q&A সেশন</li>
+            </ul>
+            <div class="actions">
+              <button class="btn btn--ghost" onclick="alert('৭ম শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+              <button class="btn btn--primary" onclick="scrollToId('apply')">Enroll Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ৮ম -->
+        <article class="grade-card">
+          <div class="grade-head">
+            <h3 class="grade-title">৮ম শ্রেণি</h3>
+            <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+          </div>
+          <div class="grade-body">
+            <ul>
+              <li>প্রতিটি বিষয়ের প্যারালাল টেস্ট</li>
+              <li>লেকচার ক্লাস ও রেকর্ডেড ভিডিও</li>
+              <li>লাইভ এক্সাম ও গ্রেডিং সিস্টেম</li>
+              <li>PDF ক্লাস নোট ও সমাধান</li>
+              <li>এলাকাভিত্তিক রিপোর্ট ও SMS/ই-মেইল</li>
+              <li>ডাউট সলভিং Q&A সেশন</li>
+            </ul>
+            <div class="actions">
+              <button class="btn btn--ghost" onclick="alert('৮ম শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+              <button class="btn btn--primary" onclick="scrollToId('apply')">Enroll Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ৯ম -->
+        <article class="grade-card">
+          <div class="grade-head">
+            <h3 class="grade-title">৯ম শ্রেণি</h3>
+            <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+          </div>
+          <div class="grade-body">
+            <ul>
+              <li>বাংলা/ইংরেজি/গণিত/পদার্থ/রসায়ন/জীববিজ্ঞান</li>
+              <li>লেকচার + রেকর্ডেড ভিডিও</li>
+              <li>চ্যাপ্টার টেস্ট, লাইভ এক্সাম, গ্রেডিং</li>
+              <li>PDF নোট, Worked Solutions</li>
+              <li>প্রগেস রিপোর্ট ও SMS নোটিফিকেশন</li>
+              <li>ডাউট সলভিং Q&A সেশন</li>
+            </ul>
+            <div class="actions">
+              <button class="btn btn--ghost" onclick="alert('৯ম শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+              <button class="btn btn--primary" onclick="scrollToId('apply')">Enroll Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ১০ম -->
+        <article class="grade-card">
+          <div class="grade-head">
+            <h3 class="grade-title">SSC</h3>
+            <div class="grade-sub">বোর্ড পরীক্ষাভিত্তিক প্রস্তুতি</div>
+          </div>
+          <div class="grade-body">
+            <ul>
+              <li>বোর্ড স্টাইলে মডেল টেস্ট ও প্রশ্ন বিশ্লেষণ</li>
+              <li>টপিকওয়াইজ সংক্ষিপ্ত নোট ও ফর্মুলা শিট</li>
+              <li>পূর্ববর্তী বছরের প্রশ্ন অনুশীলন</li>
+              <li>প্রগেস ট্র্যাকিং ড্যাশবোর্ড</li>
+              <li>রিভিশন ম্যারাথন + গ্র্যান্ড টেস্ট</li>
+              <li>ডাউট সলভিং Q&A সেশন</li>
+            </ul>
+            <div class="actions">
+              <button class="btn btn--ghost" onclick="alert('১০ম শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+              <button class="btn btn--primary" onclick="scrollToId('apply')">Enroll Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ১১শ -->
+        <article class="grade-card">
+          <div class="grade-head">
+            <h3 class="grade-title">HSC First Year</h3>
+            <div class="grade-sub">HSC ফাউন্ডেশন ট্র্যাক</div>
+          </div>
+          <div class="grade-body">
+            <ul>
+              <li>Physics • Chemistry • Biology • Higher Math • ICT • English</li>
+              <li>লেকচার + রেকর্ডেড + প্র্যাকটিস সেট</li>
+              <li>কুইজ/মডিউল টেস্ট ও পারফরম্যান্স অ্যানালিটিক্স</li>
+              <li>PDF নোট ও সমাধানপত্র</li>
+              <li>মাসিক রিপোর্ট ও নোটিফিকেশন</li>
+              <li>ডাউট সলভিং Q&A সেশন</li>
+            </ul>
+            <div class="actions">
+              <button class="btn btn--ghost" onclick="alert('১১শ শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+              <button class="btn btn--primary" onclick="scrollToId('apply')">Enroll Now</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- ১২শ -->
+        <article class="grade-card">
+          <div class="grade-head">
+            <h3 class="grade-title">HSC Second Year</h3>
+            <div class="grade-sub">HSC Target ২০২৬</div>
+          </div>
+          <div class="grade-body">
+            <ul>
+              <li>বোর্ড সিলেবাস ফোকাসড রুটিন</li>
+              <li>টপিক রিভিশন + মডেল টেস্ট সিরিজ</li>
+              <li>পাস্ট ইয়ার প্রশ্ন ও Discussion</li>
+              <li>PDF নোট/সারাংশ ও সমাধান</li>
+              <li>প্রগেস রিপোর্ট, SMS/ই-মেইল এলার্ট</li>
+              <li>লাইভ ডাউট সলভিং Q&A</li>
+            </ul>
+            <div class="actions">
+              <button class="btn btn--ghost" onclick="alert('১২শ শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+              <button class="btn btn--primary" onclick="scrollToId('apply')">Enroll Now</button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>15K+</strong><span>Learners</span></div>
+        <div class="stat"><strong>1.2K+</strong><span>Expert Mentors</span></div>
+        <div class="stat"><strong>10k+</strong><span>Practice Attempts</span></div>
+        <div class="stat"><strong>95%</strong><span>Completion Rate</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <h2>Why Students Love It</h2>
+      <p class="lead"><b>Faith Coaching Home</b> শিক্ষার্থীদের ভালোবাসার জায়গা — কারণ এখানে শেখানো হয় শুধু বই নয়, গড়ে তোলা হয় আত্মবিশ্বাস, শ্রদ্ধা ও সাফল্যের মানসিকতা।</p>
+      <div class="cards">
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Live + Recorded</span>
+            <h3>Blended Classes</h3>
+            <p>লাইভ ক্লাস, রেকর্ডেড ভিডিও, ও কুইজ—একসাথে। নিজের গতিতে শিখুন।</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Analytics</span>
+            <h3>Smart Tracking</h3>
+            <p>স্ট্রং/উইক টপিক ড্যাশবোর্ড, রিকমেন্ডেড প্র্যাকটিস সেট, টাইম-ম্যানেজমেন্ট টিপস।</p>
+          </div>
+        </article>
+        <article class="card">
+          <div class="card-body">
+            <span class="tag">Community</span>
+            <h3>Mentor Support</h3>
+            <p>ডেডিকেটেড সাপোর্ট গ্রুপ, লাইভ ডাউট সেশন, ও ডিসকাশন বোর্ড।</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="testi" id="success">
+        <div class="quote">
+          <p>অভিনন্দন মাহি রহমান! এইচ.এস.সি ২০২৫ পরীক্ষায় মাহি রহমান উজ্জ্বল সাফল্য অর্জন করেছে <b>A+</b> ফলাফলে। Faith Coaching Home পরিবারের গর্ব — তোমার এই অর্জনে আমরা সকলেই আনন্দিত!</p>
+          <div class="who">
+            <img class="avatar" src="mahi.jpg" alt="মাহি রহমান">
+            <div>
+              <strong>মাহি রহমান</strong><br/>
+              <small>HSC 2025</small>
+            </div>
+          </div>
+        </div>
+        <div class="quote">
+          <p>তানভীর আলম <b>SSC ২০২৫</b> পরীক্ষায় অর্জন করেছে <b>A+ </b>ফলাফল! তার নিষ্ঠা, অধ্যবসায় এবং <b>Faith Coaching Home</b> এর মানসম্মত গাইডেন্স মিলেই এনে দিয়েছে এই অসাধারণ সাফল্য।</p>
+          <div class="who">
+            <img class="avatar" src="tanvir.jpg" alt="মাহি রহমান">
+            <div>
+              <strong>তানভীর আলম</strong><br/>
+              <small>SSC 2025</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <button class="faq-q">এই ক্লোনে কি FCH-এর আসল কন্টেন্ট আছে?<span>+</span></button>
+          <div class="faq-a">না। এটি শুধুই লুক-এন্ড-ফিল/লেআউট পুনর্নির্মাণ। এখানে প্লেসহোল্ডার কপি/ইমেজ দেয়া হয়েছে যাতে আপনি লাইসেন্সড/অনুমোদিত কনটেন্ট বসাতে পারেন।</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">ইমেজ ও অ্যাসেট কীভাবে বসাবো?<span>+</span></button>
+          <div class="faq-a">assets/ ফোল্ডার তৈরি করে আপনার অনুমোদিত ছবি রাখুন, তারপর .card-media বা .slide ব্যাকগ্রাউন্ড URL বদলে দিন।</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">ফর্ম/লগইন কি কাজ করবে?<span>+</span></button>
+          <div class="faq-a">এটি স্ট্যাটিক ফ্রন্টএন্ড ডেমো—ব্যাকএন্ড নেই। প্রোডাকশনে ফর্ম/অথ যোগ করতে হলে API বা সার্ভার লাগবে।</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-col">
+          <h4>Programs</h4>
+          <a href="#programs">SSC</a>
+          <a href="#programs">HSC</a>
+          <a href="#programs">Admission</a>
+        </div>
+        <div class="foot-col">
+          <h4>Help</h4>
+          <a href="#about-us">About Us</a>
+          <a href="#branches">Branch List</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="#terms">Terms &amp; Conditions</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <a href="mailto:fchhome2012@gmail.com">fchhome2012@gmail.com</a>
+          <a href="tel:+8801829696632">+880 1829-696632</a>
+          <a href="https://www.facebook.com/edu.faithcoachinghome" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://m.youtube.com/@FaithCoachingHome?fbclid=IwVERDUAN0giFleHRuA2FlbQIxMAABHqZ0TWdxKkDzAotxj5dDrrPvjXIIHBBR7Nh0S0zqWHmWAlx901Pld2oQcH4e_aem_Vr6tdiHz8LXdNuGZINffCQ" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> Faith Coaching Home. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- ✅ Floating Social Buttons -->
+  <div class="float-social" aria-label="Quick social actions">
+    <!-- Facebook -->
+    <a class="fs fs--fb"
+       href="https://www.facebook.com/edu.faithcoachinghome"
+       target="_blank" rel="noopener"
+       aria-label="Open Facebook page" title="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/>
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a class="fs fs--yt"
+       href="https://m.youtube.com/@FaithCoachingHome?fbclid=IwVERDUAN0giFleHRuA2FlbQIxMAABHqZ0TWdxKkDzAotxj5dDrrPvjXIIHBBR7Nh0S0zqWHmWAlx901Pld2oQcH4e_aem_Vr6tdiHz8LXdNuGZINffCQ"
+       target="_blank" rel="noopener"
+       aria-label="Open YouTube channel" title="YouTube">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12c0 1.9.2 3.8.5 5.8a3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1c.3-2 .5-3.9.5-5.8 0-1.9-.2-3.8-.5-5.8zM9.6 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+      </svg>
+    </a>
+
+    <!-- WhatsApp -->
+    <a class="fs fs--wa"
+       href="https://wa.me/8801829696632?text=Hi%20Faith%20Coaching%20Home%20team%2C%20I%20need%20information."
+       target="_blank" rel="noopener"
+       aria-label="Chat on WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 3.5A11.5 11.5 0 0 0 12 .9C5.9.9.9 5.9.9 12c0 2 .6 3.9 1.6 5.6L1 24l6.6-1.7a11.2 11.2 0 0 0 4.3.9c6.1 0 11.1-5 11.1-11.1 0-3-1.2-5.8-3.5-7.6zM12 21.1c-1.4 0-2.8-.4-4-.9l-.3-.1-3.9 1 1-3.8-.2-.3a9.1 9.1 0 1 1 7.4 4.1zm5.2-6.8c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.2l-.9 1c-.2.2-.5.2-.8.1-.3-.1-1.1-.4-2-1.2-.7-.6-1.2-1.3-1.4-1.6-.2-.3 0-.5.1-.6l.3-.4c.2-.2.3-.3.4-.6.1-.3 0-.5 0-.6l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 3 0 1.7 1.2 3.3 1.3 3.6.2.3 2.3 3.6 5.6 4.9 3.3 1.3 3.3.9 3.9.8.6 0 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.3z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    // Utilities
+    const scrollToId = (id) => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // Mobile menu
+    const hamb = document.getElementById('hamb');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamb?.addEventListener('click', () => {
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Carousel
+    const slides = document.getElementById('slides');
+    const dotsWrap = document.getElementById('dots');
+    let idx = 0;
+    const total = slides.children.length;
+    const go = (i) => {
+      idx = (i + total) % total;
+      slides.style.transform = `translateX(-${idx * 100}%)`;
+      [...dotsWrap.children].forEach((d,k)=>d.classList.toggle('active', k===idx));
+    };
+    for (let i=0;i<total;i++){
+      const b = document.createElement('button');
+      b.className = 'dot' + (i===0?' active':'');
+      b.addEventListener('click', ()=>go(i));
+      dotsWrap.appendChild(b);
+    }
+    setInterval(()=>go(idx+1), 4000);
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const a = btn.parentElement.querySelector('.faq-a');
+        const open = a.style.display === 'block';
+        a.style.display = open ? 'none' : 'block';
+        btn.querySelector('span').textContent = open ? '+' : '–';
+      });
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Download as single HTML (optional)
+    function downloadHTML(){
+      const src = document.documentElement.outerHTML;
+      const blob = new Blob([src], {type: 'text/html'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'faith-coaching-home.html';
+      document.body.appendChild(a); a.click();
+      URL.revokeObjectURL(url); a.remove();
+    }
+  </script>
+</body>
+</html>
