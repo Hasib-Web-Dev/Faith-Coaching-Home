@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faith Coaching Home</title>
+  <meta name="description" content="A clean, responsive static clone of the UDVASH homepage layout. Pure HTML/CSS/JS with no build step." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="header" id="header">
+    <div class="container nav">
+      <a class="brand" href="#">
+        <img class="brand-logo" src="Faith Coaching Home.png" alt="Faith Coaching Home logo">
+        <span>Faith Coaching Home</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#programs" class="active">Programs</a>
+        <a href="#features">Features</a>
+        <a href="#success">Success</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <button class="btn btn--ghost" onclick="scrollToId('programs')">Explore</button>
+        <button class="btn btn--primary" onclick="scrollToId('contact')">Apply Now</button>
+        <button class="hamb" id="hamb" aria-label="Open menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#programs">Programs</a>
+      <a href="#features">Features</a>
+      <a href="#success">Success</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="chip">SSC | HSC | Admission</span>
+        <h1>স্মার্ট লার্নিং, বেটার রেজাল্ট — FCH স্টাইলে।</h1>
+        <p class="lead">শিক্ষার মূল উদ্দেশ্য হলো একজন শিক্ষার্থীর সুপ্ত মেধা ও প্রতিভাকে বিকশিত করা, তার চিন্তাশক্তিকে ত্বরান্বিত করা এবং তাকে ধৈর্যশীল, আত্মবিশ্বাসী, নীতিবান ও দায়িত্ববান মানুষ হিসেবে গড়ে তোলা। এই নীতিকে সামনে নিয়ে শুরু থেকেই FCH পরিবারের পথচলা। সততা, নিষ্ঠা, সেবা ও পরিবর্তনের মানসিকতা নিয়ে এগিয়ে চলছে ধাপে ধাপে — একটি আলোকিত ভবিষ্যতের পথে।</p>
+        <div class="hero-actions">
+          <button class="btn btn--primary" onclick="scrollToId('programs')">Browse Programs</button>
+          <button class="btn btn--ghost" onclick="scrollToId('features')">See Features</button>
+        </div>
+
+        <div class="hero-card">
+          <h3>📈 Live Metrics</h3>
+          <div class="metric">
+            <div class="metric-info">
+              <strong>95%+</strong>
+              <br>
+              <small>Student satisfaction</small>
+            </div>
+            <div>⭐️⭐️⭐️⭐️⭐️</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-container">
+        <div class="carousel" id="carousel">
+          <div class="slide" style="background-image:url('student3.jpg')"></div>
+          <div class="slide" style="background-image:url('student4.jpg')"></div>
+          <div class="slide" style="background-image:url('student2.jpg')"></div>
+        </div>
+        
+        <button class="carousel-nav carousel-prev" id="prevBtn" aria-label="Previous slide">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
+          </svg>
+        </button>
+        <button class="carousel-nav carousel-next" id="nextBtn" aria-label="Next slide">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
+          </svg>
+        </button>
+
+        <div class="dots" id="dots" aria-label="Select slide"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="section" id="programs">
+    <div class="container">
+      <div class="section-head">
+        <h2>Academic Programs</h2>
+        <p class="lead">SSC, HSC ও Admission — সব কোর্সের জন্য ভরসার নাম <b>ফেইথ কোচিং হোম।</b></p>
+      </div>
+
+      <div class="program-tabs-container">
+        <!-- Interactive Tabs Navigation -->
+        <div class="tabs-list" role="tablist" aria-label="Academic programs">
+          <button class="tab-trigger active" role="tab" aria-selected="true" aria-controls="primary-junior" id="tab-primary-junior">৬ষ্ঠ - ৮ম শ্রেণি</button>
+          <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="secondary-ssc" id="tab-secondary-ssc">৯ম - SSC</button>
+          <button class="tab-trigger" role="tab" aria-selected="false" aria-controls="higher-secondary-hsc" id="tab-higher-secondary-hsc">HSC (১ম ও ২য় বর্ষ)</button>
+        </div>
+        
+        <!-- Tab 1: Primary & Junior -->
+        <div class="tab-content active" id="primary-junior" role="tabpanel" aria-labelledby="tab-primary-junior">
+          <div class="grade-grid">
+            <!-- ৬ষ্ঠ -->
+            <article class="grade-card">
+              <div class="grade-head">
+                <h3 class="grade-title">৬ষ্ঠ শ্রেণি</h3>
+                <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+              </div>
+              <div class="grade-body">
+                <ul>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>প্রতিটি বিষয়ের প্যারালাল টেস্ট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লেকচার ক্লাস ও রেকর্ডেড ভিডিও</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লাইভ এক্সাম ও গ্রেডিং সিস্টেম</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>PDF ক্লাস নোট ও সমাধান</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>এলাকাভিত্তিক রিপোর্ট ও SMS/ই-মেইল</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>ডাউট সলভিং Q&A সেশন</span>
+                  </li>
+                </ul>
+                <div class="grade-actions">
+                  <button class="btn btn--ghost" onclick="alert('৬ষ্ঠ শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+                  <button class="btn btn--primary" onclick="scrollToId('contact')">Enroll</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ৭ম -->
+            <article class="grade-card">
+              <div class="grade-head">
+                <h3 class="grade-title">৭ম শ্রেণি</h3>
+                <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+              </div>
+              <div class="grade-body">
+                <ul>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>প্রতিটি বিষয়ের প্যারালাল টেস্ট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লেকচার ক্লাস ও রেকর্ডেড ভিডিও</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লাইভ এক্সাম ও গ্রেডিং সিস্টেম</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>PDF ক্লাস নোট ও সমাধান</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>এলাকাভিত্তিক রিপোর্ট ও SMS/ই-মেইল</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>ডাউট সলভিং Q&A সেশন</span>
+                  </li>
+                </ul>
+                <div class="grade-actions">
+                  <button class="btn btn--ghost" onclick="alert('৭ম শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+                  <button class="btn btn--primary" onclick="scrollToId('contact')">Enroll</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ৮ম -->
+            <article class="grade-card">
+              <div class="grade-head">
+                <h3 class="grade-title">৮ম শ্রেণি</h3>
+                <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+              </div>
+              <div class="grade-body">
+                <ul>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>প্রতিটি বিষয়ের প্যারালাল টেস্ট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লেকচার ক্লাস ও রেকর্ডেড ভিডিও</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লাইভ এক্সাম ও গ্রেডিং সিস্টেম</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>PDF ক্লাস নোট ও সমাধান</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>এলাকাভিত্তিক রিপোর্ট ও SMS/ই-মেইল</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>ডাউট সলভিং Q&A সেশন</span>
+                  </li>
+                </ul>
+                <div class="grade-actions">
+                  <button class="btn btn--ghost" onclick="alert('৮ম শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+                  <button class="btn btn--primary" onclick="scrollToId('contact')">Enroll</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+        
+        <!-- Tab 2: Secondary / SSC -->
+        <div class="tab-content" id="secondary-ssc" role="tabpanel" aria-labelledby="tab-secondary-ssc">
+          <div class="grade-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <!-- ৯ম -->
+            <article class="grade-card">
+              <div class="grade-head">
+                <h3 class="grade-title">৯ম শ্রেণি</h3>
+                <div class="grade-sub">একাডেমিক প্রোগ্রাম ২০২৬</div>
+              </div>
+              <div class="grade-body">
+                <ul>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>গণিত, পদার্থ, রসায়ন, জীববিজ্ঞান ও ইংরেজি বিশেষ গুরুত্ব</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লেকচার + রেকর্ডেড ক্লাস ও প্র্যাকটিস শিট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>চ্যাপ্টারভিত্তিক টেস্ট ও নিয়মিত মূল্যায়ন</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>সমাধানসহ PDF ক্লাস নোট ও হ্যান্ডআউট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>অভিভাবকদের জন্য SMS প্রগ্রেস রিপোর্ট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>সপ্তাহে ১ দিন বিশেষ ডাউট ক্লিয়ারিং সেশন</span>
+                  </li>
+                </ul>
+                <div class="grade-actions">
+                  <button class="btn btn--ghost" onclick="alert('৯ম শ্রেণি – বিস্তারিত (ডেমো)')">Details</button>
+                  <button class="btn btn--primary" onclick="scrollToId('contact')">Enroll</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ১০ম / SSC -->
+            <article class="grade-card">
+              <div class="grade-head">
+                <h3 class="grade-title">SSC প্রস্তুতি</h3>
+                <div class="grade-sub">বোর্ড পরীক্ষাভিত্তিক কমপ্লিট ট্র্যাক</div>
+              </div>
+              <div class="grade-body">
+                <ul>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>বোর্ড স্টাইলে মডেল টেস্ট ও টেস্ট পেপার সমাধান</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>টপিকভিত্তিক রিভিশন ও ফর্মুলা শিট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>বিগত ২০ বছরের সৃজনশীল প্রশ্ন বিশ্লেষণ</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>অনলাইন ও অফলাইন মিক্সড প্রগ্রেস ট্র্যাকার</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>গ্র্যান্ড মডেল টেস্ট ও মেধাভিত্তিক বিশেষ ক্লাস</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>সরাসরি মেন্টরদের তত্ত্বাবধানে ডাউট সলভিং</span>
+                  </li>
+                </ul>
+                <div class="grade-actions">
+                  <button class="btn btn--ghost" onclick="alert('SSC প্রস্তুতি – বিস্তারিত (ডেমো)')">Details</button>
+                  <button class="btn btn--primary" onclick="scrollToId('contact')">Enroll</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Tab 3: Higher Secondary / HSC -->
+        <div class="tab-content" id="higher-secondary-hsc" role="tabpanel" aria-labelledby="tab-higher-secondary-hsc">
+          <div class="grade-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <!-- HSC 1st -->
+            <article class="grade-card">
+              <div class="grade-head">
+                <h3 class="grade-title">HSC 1st Year</h3>
+                <div class="grade-sub">ভিত্তি মজবুত করার একাডেমিক প্রোগ্রাম</div>
+              </div>
+              <div class="grade-body">
+                <ul>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>Physics, Chemistry, Math & Biology কমপ্লিট কভারেজ</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>লাইভ লেকচার, রেকর্ডেড ক্লাস ও কোশ্চেন সলভ বুকস</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>অধ্যায় শেষে স্পেশাল ক্রিয়েটিভ ও MCQ টেস্ট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>হাতে কলমে তৈরি করা নোট ও বোর্ড প্রশ্ন সমাধান</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>প্রতিটি পরীক্ষার ওএমআর (OMR) ও অ্যানালিটিক্স রিপোর্ট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>২৪/৭ ডাউট সলভিং সাপোর্ট গ্রুপ</span>
+                  </li>
+                </ul>
+                <div class="grade-actions">
+                  <button class="btn btn--ghost" onclick="alert('HSC 1st Year – বিস্তারিত (ডেমো)')">Details</button>
+                  <button class="btn btn--primary" onclick="scrollToId('contact')">Enroll Now</button>
+                </div>
+              </div>
+            </article>
+
+            <!-- HSC 2nd / HSC Target -->
+            <article class="grade-card">
+              <div class="grade-head">
+                <h3 class="grade-title">HSC 2nd Year</h3>
+                <div class="grade-sub">বোর্ড গোল্ডেন A+ এবং এডমিশন বুস্টার ট্র্যাক</div>
+              </div>
+              <div class="grade-body">
+                <ul>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>হোল সিলেবাস রিভিশন ও ফাইনাল মডেল টেস্ট প্যাকেজ</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>এইচএসসি বোর্ড পরীক্ষার অনুরূপ টেস্ট সিরিজ</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>এইচএসসি এবং এডমিশন মিক্সড ফাউন্ডেশন ক্লাস</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>ডিজিটাল অ্যানালিটিক্স প্রগ্রেস ড্যাশবোর্ড ও ওএমআর শিট</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>গ্র্যান্ড ফিনালে অ্যাওয়ার্ড ও স্পেশাল গাইডেন্স সেশন</span>
+                  </li>
+                  <li>
+                    <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    <span>বুয়েট, মেডিকেল ও ঢাবি মেন্টরদের ডিরেক্ট সাপোর্ট</span>
+                  </li>
+                </ul>
+                <div class="grade-actions">
+                  <button class="btn btn--ghost" onclick="alert('HSC 2nd Year – বিস্তারিত (ডেমো)')">Details</button>
+                  <button class="btn btn--primary" onclick="scrollToId('contact')">Enroll Now</button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats">
+        <div class="stat">
+          <strong>15K+</strong>
+          <span>Learners</span>
+        </div>
+        <div class="stat">
+          <strong>1.2K+</strong>
+          <span>Expert Mentors</span>
+        </div>
+        <div class="stat">
+          <strong>10K+</strong>
+          <span>Practice Attempts</span>
+        </div>
+        <div class="stat">
+          <strong>95%</strong>
+          <span>Completion Rate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-head">
+        <h2>Why Students Love FCH</h2>
+        <p class="lead"><b>Faith Coaching Home</b> শিক্ষার্থীদের ভালোবাসার জায়গা — কারণ এখানে শেখানো হয় শুধু বই নয়, গড়ে তোলা হয় আত্মবিশ্বাস, চরিত্র ও সাফল্যের মানসিকতা।</p>
+      </div>
+
+      <div class="features-grid">
+        <article class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z"></path>
+            </svg>
+          </div>
+          <h3>Blended Classes</h3>
+          <p>লাইভ ক্লাস, রেকর্ডেড ভিডিও লেকচার ও নিয়মিত অনলাইন কুইজ—সব মিলিয়ে নিজের ফ্লেক্সিবল গতিতে শেখার সুবিধা।</p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0h.5m-10.5 0h.5m1.5-6l3-3m0 0l3 3m-3-3v7.5"></path>
+            </svg>
+          </div>
+          <h3>Smart Tracking</h3>
+          <p>দুর্বল ও শক্তিশালী বিষয়গুলো চিহ্নিত করতে অ্যানালিটিক্স ড্যাশবোর্ড, রিকমেন্ডেড প্র্যাকটিস এবং টাইম-ম্যানেজমেন্ট গাইডেন্স।</p>
+        </article>
+        
+        <article class="card">
+          <div class="card-icon">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94-3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path>
+            </svg>
+          </div>
+          <h3>Mentor Support</h3>
+          <p>ডেডিকেটেড সাপোর্ট কমিউনিটি গ্রুপ, যেকোনো সময় লাইভ ডাউট সলভ এবং সার্বক্ষণিক সিনিয়র মেন্টরদের পরামর্শ।</p>
+        </article>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="testimonials-grid" id="success">
+        <div class="quote">
+          <svg class="quote-icon" width="40" height="40" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.192 15.757c0-.907-.188-1.754-.565-2.54a5.72 5.72 0 0 1-1.499-2.029c.125-.19.347-.448.67-.775.319-.329.673-.772 1.061-1.332.388-.564.71-1.226.969-1.986.26-.763.39-1.624.39-2.585V3.882H6.262v2.585c0 .9.117 1.704.352 2.412a5.753 5.753 0 0 0 1.025 1.956c-.426.64-.84 1.25-1.243 1.832a13.376 13.376 0 0 0-1.025 1.752c-.297.662-.446 1.48-.446 2.457v2.243h6.267v-3.362zm10.741 0c0-.907-.188-1.754-.565-2.54a5.72 5.72 0 0 1-1.499-2.029c.125-.19.347-.448.67-.775.319-.329.673-.772 1.061-1.332.388-.564.71-1.226.969-1.986.26-.763.39-1.624.39-2.585V3.882h-5.956v2.585c0 .9.117 1.704.352 2.412.235.708.577 1.359 1.026 1.956-.426.64-.84 1.25-1.243 1.832a13.376 13.376 0 0 0-1.025 1.752c-.297.662-.446 1.48-.446 2.457v2.243h6.267v-3.362z"/>
+          </svg>
+          <p>“অভিনন্দন মাহি রহমান! এইচ.এস.সি ২০২৫ পরীক্ষায় মাহি রহমান উজ্জ্বল সাফল্য অর্জন করেছে <b>A+</b> ফলাফলে। Faith Coaching Home পরিবারের গর্ব — তোমার এই অর্জনে আমরা সকলেই আনন্দিত!”</p>
+          <div class="who">
+            <img class="avatar" src="mahi.jpg" alt="মাহি রহমান">
+            <div>
+              <strong>মাহি রহমান</strong>
+              <small>HSC 2025</small>
+            </div>
+          </div>
+        </div>
+        
+        <div class="quote">
+          <svg class="quote-icon" width="40" height="40" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.192 15.757c0-.907-.188-1.754-.565-2.54a5.72 5.72 0 0 1-1.499-2.029c.125-.19.347-.448.67-.775.319-.329.673-.772 1.061-1.332.388-.564.71-1.226.969-1.986.26-.763.39-1.624.39-2.585V3.882H6.262v2.585c0 .9.117 1.704.352 2.412a5.753 5.753 0 0 0 1.025 1.956c-.426.64-.84 1.25-1.243 1.832a13.376 13.376 0 0 0-1.025 1.752c-.297.662-.446 1.48-.446 2.457v2.243h6.267v-3.362zm10.741 0c0-.907-.188-1.754-.565-2.54a5.72 5.72 0 0 1-1.499-2.029c.125-.19.347-.448.67-.775.319-.329.673-.772 1.061-1.332.388-.564.71-1.226.969-1.986.26-.763.39-1.624.39-2.585V3.882h-5.956v2.585c0 .9.117 1.704.352 2.412.235.708.577 1.359 1.026 1.956-.426.64-.84 1.25-1.243 1.832a13.376 13.376 0 0 0-1.025 1.752c-.297.662-.446 1.48-.446 2.457v2.243h6.267v-3.362z"/>
+          </svg>
+          <p>“তানভীর আলম <b>SSC ২০২৫</b> পরীক্ষায় অর্জন করেছে <b>A+ </b>ফলাফল! তার নিষ্ঠা, অধ্যবসায় এবং <b>Faith Coaching Home</b> এর মানসম্মত গাইডেন্স মিলেই এনে দিয়েছে এই অসাধারণ সাফল্য।”</p>
+          <div class="who">
+            <img class="avatar" src="tanvir.jpg" alt="তানভীর আলম">
+            <div>
+              <strong>তানভীর আলম</strong>
+              <small>SSC 2025</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <h2>Frequently Asked Questions</h2>
+        <p class="lead">সাধারণ কিছু প্রশ্নের দ্রুত উত্তর এখানে পেয়ে যাবেন।</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>এই ক্লোনে কি FCH-এর আসল কন্টেন্ট আছে?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">না। এটি শুধুই লুক-এন্ড-ফিল/লেআউট পুনর্নির্মাণ। এখানে প্লেসহোল্ডার কপি/ইমেজ দেয়া হয়েছে যাতে আপনি লাইসেন্সড/অনুমোদিত কনটেন্ট বসাতে পারেন।</div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>ইমেজ ও অ্যাসেট কীভাবে বসাবো?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">assets/ ফোল্ডার তৈরি করে আপনার অনুমোদিত ছবি রাখুন, তারপর .card-media বা .slide ব্যাকগ্রাউন্ড URL বদলে দিন।</div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-q">
+            <span>ফর্ম/লগইন কি কাজ করবে?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">এটি স্ট্যাটিক ফ্রন্টএন্ড ডেমো—ব্যাকএন্ড নেই। প্রোডাকশনে ফর্ম/অথ যোগ করতে হলে API বা সার্ভার লাগবে।</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="#" style="margin-bottom:12px">
+            <img class="brand-logo" src="Faith Coaching Home.png" alt="Faith Coaching Home logo">
+            <span style="color:#fff">Faith Coaching Home</span>
+          </a>
+          <p>স্মার্ট লার্নিং, বেটার রেজাল্ট — FCH স্টাইলে। আপনার সন্তানের সুন্দর ও সফল ভবিষ্যতের জন্য নির্ভরযোগ্য পার্টনার।</p>
+        </div>
+        
+        <div class="foot-col">
+          <h4>Programs</h4>
+          <a href="#programs">SSC প্রস্তুতি</a>
+          <a href="#programs">HSC প্রস্তুতি</a>
+          <a href="#programs">ভর্তি প্রস্তুতি (Admission)</a>
+        </div>
+        
+        <div class="foot-col">
+          <h4>Help & Info</h4>
+          <a href="#about-us">About Us</a>
+          <a href="#branches">Branch List</a>
+          <a href="privacy.html">Privacy Policy</a>
+          <a href="#terms">Terms &amp; Conditions</a>
+        </div>
+        
+        <div class="foot-col">
+          <h4>Contact Us</h4>
+          <a href="mailto:fchhome2012@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            fchhome2012@gmail.com
+          </a>
+          <a href="tel:+8801829696632">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            +880 1829-696632
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="copyright">© <span id="year"></span> Faith Coaching Home. All rights reserved.</div>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/edu.faithcoachinghome" target="_blank" rel="noopener" class="footer-social-link" title="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M9 8H7v3h2v9h4v-9h3.6l.4-3H13V6c0-.5.5-1 1-1h3V2h-4c-2.5 0-5 1.5-5 4v2z"/></svg>
+          </a>
+          <a href="https://m.youtube.com/@FaithCoachingHome" target="_blank" rel="noopener" class="footer-social-link" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12c0 1.9.2 3.8.5 5.8a3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1c.3-2 .5-3.9.5-5.8 0-1.9-.2-3.8-.5-5.8zM9.6 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Social Buttons -->
+  <div class="float-social" aria-label="Quick social actions">
+    <!-- Facebook -->
+    <a class="fs fs--fb" href="https://www.facebook.com/edu.faithcoachinghome" target="_blank" rel="noopener" aria-label="Open Facebook page" title="Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/>
+      </svg>
+    </a>
+
+    <!-- YouTube -->
+    <a class="fs fs--yt" href="https://m.youtube.com/@FaithCoachingHome" target="_blank" rel="noopener" aria-label="Open YouTube channel" title="YouTube">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12c0 1.9.2 3.8.5 5.8a3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1c.3-2 .5-3.9.5-5.8 0-1.9-.2-3.8-.5-5.8zM9.6 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+      </svg>
+    </a>
+
+    <!-- WhatsApp -->
+    <a class="fs fs--wa" href="https://wa.me/8801829696632?text=Hi%20Faith%20Coaching%20Home%20team%2C%20I%20need%20information." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 3.5A11.5 11.5 0 0 0 12 .9C5.9.9.9 5.9.9 12c0 2 .6 3.9 1.6 5.6L1 24l6.6-1.7a11.2 11.2 0 0 0 4.3.9c6.1 0 11.1-5 11.1-11.1 0-3-1.2-5.8-3.5-7.6zM12 21.1c-1.4 0-2.8-.4-4-.9l-.3-.1-3.9 1 1-3.8-.2-.3a9.1 9.1 0 1 1 7.4 4.1zm5.2-6.8c-.3-.1-1.7-.9-2-.9-.3-.1-.5-.1-.7.2l-.9 1c-.2.2-.5.2-.8.1-.3-.1-1.1-.4-2-1.2-.7-.6-1.2-1.3-1.4-1.6-.2-.3 0-.5.1-.6l.3-.4c.2-.2.3-.3.4-.6.1-.3 0-.5 0-.6l-.7-1.7c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 3 0 1.7 1.2 3.3 1.3 3.6.2.3 2.3 3.6 5.6 4.9 3.3 1.3 3.3.9 3.9.8.6 0 1.9-.8 2.2-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.3z"/>
+      </svg>
+    </a>
+  </div>
+
+  <script>
+    // Utilities
+    const scrollToId = (id) => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    // Header Background Scroll Effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('header--scrolled');
+      } else {
+        header.classList.remove('header--scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const hamb = document.getElementById('hamb');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamb?.addEventListener('click', () => {
+      mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close mobile menu on click links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.style.display = 'none';
+      });
+    });
+
+    // Carousel Slider
+    const slides = document.getElementById('carousel');
+    const dotsWrap = document.getElementById('dots');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let idx = 0;
+    const total = slides.children.length;
+
+    const go = (i) => {
+      idx = (i + total) % total;
+      slides.style.transform = `translateX(-${idx * 100}%)`;
+      [...dotsWrap.children].forEach((d, k) => d.classList.toggle('active', k === idx));
+    };
+
+    // Create Carousel Indicator Dots
+    for (let i = 0; i < total; i++) {
+      const b = document.createElement('button');
+      b.className = 'dot' + (i === 0 ? ' active' : '');
+      b.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      b.addEventListener('click', () => go(i));
+      dotsWrap.appendChild(b);
+    }
+
+    prevBtn?.addEventListener('click', () => go(idx - 1));
+    nextBtn?.addEventListener('click', () => go(idx + 1));
+
+    // Auto Play Slider
+    let autoPlayInterval = setInterval(() => go(idx + 1), 5000);
+    const resetAutoplay = () => {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = setInterval(() => go(idx + 1), 5000);
+    };
+
+    [prevBtn, nextBtn, dotsWrap].forEach(el => {
+      el?.addEventListener('click', resetAutoplay);
+    });
+
+    // Program Tabs Logic
+    const tabTriggers = document.querySelectorAll('.tab-trigger');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabTriggers.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('aria-controls');
+
+        // Toggle active states on buttons
+        tabTriggers.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+
+        // Toggle active states on content sections
+        tabContents.forEach(c => {
+          c.classList.remove('active');
+        });
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) {
+          targetContent.classList.add('active');
+        }
+      });
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const button = item.querySelector('.faq-q');
+      const answer = item.querySelector('.faq-a');
+      
+      button.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+        
+        // Close all faq items
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+          otherItem.classList.remove('active');
+          otherItem.querySelector('.faq-a').style.display = 'none';
+          otherItem.querySelector('.faq-icon').textContent = '+';
+        });
+
+        // Toggle clicked faq item
+        if (!isOpen) {
+          item.classList.add('active');
+          answer.style.display = 'block';
+          item.querySelector('.faq-icon').textContent = '–';
+        }
+      });
+    });
+
+    // Set Footer Current Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
